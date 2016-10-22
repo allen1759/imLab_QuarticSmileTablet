@@ -93,6 +93,9 @@ public class Director : MonoBehaviour,
 		if (pageStack.Count == 0) {
 			Debug.Log ("Cannot pop empty pageStack");
 		} 
+		else if (pageStack.Count == 1) {
+			Debug.Log ("It exists only one page in stack");
+		}
 		else {
 			Destroy (pageStack.Peek ().GetPage ());
 			pageStack.Pop ();

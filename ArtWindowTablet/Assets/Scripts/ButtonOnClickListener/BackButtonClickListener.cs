@@ -13,8 +13,6 @@ public class BackButtonClickListener : ButtonClickListener {
 
 	public void OnClick ()
 	{
-//		director.SendStateCommand ("BACK");
-		director.DestroyCurrentPage ();
-		// change button image
+		director.SendStateCommand ("BACK");
 	}
 }
