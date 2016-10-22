@@ -25,7 +25,7 @@ public class Director : MonoBehaviour,
 
 		pageStack = new Stack<Page> ();
 		pageStack.Push (new MainPage (this));
-		pageStack.Push (new DoorNavigationPage (this));
+//		pageStack.Push (new DoorNavigationPage (this));
 
 		directorTask = null;
 		directorTaskLock = new System.Object ();
