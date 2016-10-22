@@ -40,6 +40,7 @@ public class MediaPool {
 
 		originPageImage = Resources.Load<Sprite> ("Media/page_image/origin_page_image");
 		conceptPageImage = Resources.Load<Sprite> ("Media/page_image/concept_page_image");
+		webPageImage = Resources.Load<Sprite> ("Media/page_image/web_page_image");
 		//object2
 		//object3
 	}

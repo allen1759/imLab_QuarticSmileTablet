@@ -13,6 +13,6 @@ public class ConceptButtonClickListener : ButtonClickListener {
 
 	public void OnClick ()
 	{
-		director.SendStateCommand ("COSS_FLY");
+		director.SendStateCommand ("DEMO_VIDEO");
 	}
 }

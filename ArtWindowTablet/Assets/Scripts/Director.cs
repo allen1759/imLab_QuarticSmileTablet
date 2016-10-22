@@ -29,7 +29,6 @@ public class Director : MonoBehaviour,
 		pageStack = new Stack<Page> ();
 		pageStack.Push (new MainPage (this));
 //		pageStack.Push (new DoorNavigationPage (this));
-		AssignTask (new DoorStartDirectorTask ());
 	}
 	
 	// Update is called once per frame
@@ -115,6 +114,7 @@ public class Director : MonoBehaviour,
 
 	public void OnNewStateCommandReceived (string command)
 	{
+		// display arrow effect
 		if (string.Compare (command, "LAKE_TO_DOOR", false) == 0) {
 		}
 		if (string.Compare (command, "DOOR_TO_LIB", false) == 0) {
@@ -124,6 +124,7 @@ public class Director : MonoBehaviour,
 		if (string.Compare (command, "LIB_TO_SOCIAL", false) == 0) {
 		}
 
+		// location buttons start
 		if (string.Compare (command, "DOOR_START", false) == 0) {
 			AssignTask (new DoorStartDirectorTask ());
 		}
@@ -137,6 +138,7 @@ public class Director : MonoBehaviour,
 			AssignTask (new LakeStartDirectorTask ());
 		}
 
+		// location buttons end
 		if (string.Compare (command, "DOOR_END", false) == 0) {
 			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
@@ -150,25 +152,26 @@ public class Director : MonoBehaviour,
 			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
 
+		// sidebar buttons start
 		if (string.Compare (command, "COSS_FLY_START", false) == 0) {
 			AssignTask (new OriginStartDirectorTask ());
 		}
-		if (string.Compare (command, "COSS_FLY_END", false) == 0) {
-			AssignTask (new DestroyCurrentPageDirectorTask ());
-		}
 		if (string.Compare (command, "DEMO_VIDEO_START", false) == 0) {
 			AssignTask (new ConceptStartDirectorTask ());
-		}
-		if (string.Compare (command, "DEMO_VIDEO_END", false) == 0) {
-		}
-		// web? dept?
-		if (string.Compare (command, "WEB_START", false) == 0 ) {
 		}
 		if (string.Compare (command, "DEPT_START", false) == 0 ) {
 			AssignTask (new DeptStartDirectorTask ());
 		}
 		if (string.Compare (command, "ARTCENTER_START", false) == 0 ) {
 			AssignTask (new ArtcenterStartDirectorTask ());
+		}
+
+		// sidebar buttons end
+		if (string.Compare (command, "COSS_FLY_END", false) == 0) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
+		if (string.Compare (command, "DEMO_VIDEO_END", false) == 0) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
 		if (string.Compare (command, "WEB_END", false) == 0) {
 			AssignTask (new DestroyCurrentPageDirectorTask ());

@@ -13,6 +13,6 @@ public class OriginButtonClickListener : ButtonClickListener {
 
 	public void OnClick ()
 	{
-		director.SendStateCommand ("DEMO_VIDEO");
+		director.SendStateCommand ("COSS_FLY");
 	}
 }
