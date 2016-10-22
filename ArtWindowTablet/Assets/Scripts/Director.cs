@@ -75,18 +75,23 @@ public class Director : MonoBehaviour,
 
 	public void CreateOriginPage ()
 	{
+		pageStack.Push (new OriginPage (this));
 	}
 
 	public void CreateConceptPage ()
 	{
+		pageStack.Push (new ConceptPage (this));
 	}
 
 	public void CreateDeptPage ()
 	{
+		pageStack.Push (new WebPage (this));
 	}
 
 	public void CreateArtcenterPage ()
-	{}
+	{
+		pageStack.Push (new WebPage (this));
+	}
 
 	public void DestroyCurrentPage ()
 	{
@@ -145,10 +150,13 @@ public class Director : MonoBehaviour,
 		}
 
 		if (string.Compare (command, "COSS_FLY_START", false) == 0) {
+			AssignTask (new OriginStartDirectorTask ());
 		}
 		if (string.Compare (command, "COSS_FLY_END", false) == 0) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
 		if (string.Compare (command, "DEMO_VIDEO_START", false) == 0) {
+			AssignTask (new ConceptStartDirectorTask ());
 		}
 		if (string.Compare (command, "DEMO_VIDEO_END", false) == 0) {
 		}
@@ -156,10 +164,13 @@ public class Director : MonoBehaviour,
 		if (string.Compare (command, "WEB_START", false) == 0 ) {
 		}
 		if (string.Compare (command, "DEPT_START", false) == 0 ) {
+			AssignTask (new DeptStartDirectorTask ());
 		}
 		if (string.Compare (command, "ARTCENTER_START", false) == 0 ) {
+			AssignTask (new ArtcenterStartDirectorTask ());
 		}
 		if (string.Compare (command, "WEB_END", false) == 0) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
 
 		if (string.Compare (command, "WORMHOLE_START", false) == 0) {
