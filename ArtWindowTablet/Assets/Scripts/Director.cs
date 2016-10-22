@@ -23,12 +23,13 @@ public class Director : MonoBehaviour,
 		stateController = new StateController ("192.168.137.1", 50000);
 		stateController.SetListener (this);
 
+		directorTask = null;
+		directorTaskLock = new System.Object ();
+
 		pageStack = new Stack<Page> ();
 		pageStack.Push (new MainPage (this));
 //		pageStack.Push (new DoorNavigationPage (this));
-
-		directorTask = null;
-		directorTaskLock = new System.Object ();
+		AssignTask (new DoorStartDirectorTask ());
 	}
 	
 	// Update is called once per frame
