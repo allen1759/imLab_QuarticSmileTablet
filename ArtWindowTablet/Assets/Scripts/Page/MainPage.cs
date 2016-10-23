@@ -19,32 +19,33 @@ public class MainPage : Page {
 		GameObject pageAsset = PrefabPool.GetInstance ().GetMainPage ();
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);
 
-		Image mainPageImage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
-		mainPageImage.sprite = MediaPool.GetInstance ().GetMainPageImage ();
+		// setup image in the unity
+//		Image mainPageImage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
+//		mainPageImage.sprite = MediaPool.GetInstance ().GetMainPageImage ();
 
 		Button doorButton = page.transform.FindChild ("Location/DoorButton").gameObject.GetComponent<Button> ();
-		doorButton.image.sprite = MediaPool.GetInstance ().GetDoorButtonImage ();
+//		doorButton.image.sprite = MediaPool.GetInstance ().GetDoorButtonImage ();
 
 		Button libraryButton = page.transform.FindChild ("Location/LibraryButton").gameObject.GetComponent<Button> ();
-		libraryButton.image.sprite = MediaPool.GetInstance ().GetLibraryButtonImage ();
+//		libraryButton.image.sprite = MediaPool.GetInstance ().GetLibraryButtonImage ();
 
-		Button cossButton = page.transform.FindChild ("Location/COSSButton").gameObject.GetComponent<Button> ();
-		cossButton.image.sprite = MediaPool.GetInstance ().GetCossButtonImage ();
+		Button cossButton = page.transform.FindChild ("Location/CossButton").gameObject.GetComponent<Button> ();
+//		cossButton.image.sprite = MediaPool.GetInstance ().GetCossButtonImage ();
 
 		Button lakeButton = page.transform.FindChild ("Location/LakeButton").gameObject.GetComponent<Button> ();
-		lakeButton.image.sprite = MediaPool.GetInstance ().GetLakeButtonImage ();
+//		lakeButton.image.sprite = MediaPool.GetInstance ().GetLakeButtonImage ();
 
 		Button originButton = page.transform.FindChild ("Sidebar/OriginButton").gameObject.GetComponent<Button> ();
-		originButton.image.sprite = MediaPool.GetInstance ().GetOriginButtonImage ();
+//		originButton.image.sprite = MediaPool.GetInstance ().GetOriginButtonImage ();
 
 		Button conceptButton = page.transform.FindChild ("Sidebar/ConceptButton").gameObject.GetComponent<Button> ();
-		conceptButton.image.sprite = MediaPool.GetInstance ().GetConceptButtonImage ();
+//		conceptButton.image.sprite = MediaPool.GetInstance ().GetConceptButtonImage ();
 
 		Button artcenterButton = page.transform.FindChild ("Sidebar/ArtcenterButton").gameObject.GetComponent<Button> ();
-		artcenterButton.image.sprite = MediaPool.GetInstance ().GetArtcenterButtonImage ();
+//		artcenterButton.image.sprite = MediaPool.GetInstance ().GetArtcenterButtonImage ();
 
 		Button deptButton = page.transform.FindChild ("Sidebar/DeptButton").gameObject.GetComponent<Button> ();
-		deptButton.image.sprite = MediaPool.GetInstance ().GetDeptButtonImage ();
+//		deptButton.image.sprite = MediaPool.GetInstance ().GetDeptButtonImage ();
 
 		// buttons on the map
 		doorButtonClickListener = new DoorButtonClickListener (director, doorButton);

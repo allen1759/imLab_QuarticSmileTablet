@@ -14,7 +14,7 @@ public class OriginPage : Page {
 
 	public OriginPage (Director director)
 	{
-		LinkComponents ();
+		SetupComponents ();
 		SetupButtonListener (director);
 	}
 
@@ -24,10 +24,9 @@ public class OriginPage : Page {
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
 	}
 
-	private void LinkComponents ()
+	private void SetupComponents ()
 	{
-		// Link to page
-		GameObject pageAsset = PrefabPool.GetInstance ().GetNavigationPage ();
+		GameObject pageAsset = PrefabPool.GetInstance ().GetVideoPage ();
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
 
 		// Setup background

@@ -14,7 +14,7 @@ public class DoorNavigationPage : Page {
 
 	public DoorNavigationPage (Director director)
 	{
-		LinkComponents ();
+		SetupComponents ();
 		SetupButtonListener (director);
 	}
 
@@ -24,9 +24,8 @@ public class DoorNavigationPage : Page {
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
 	}
 
-	private void LinkComponents ()
+	private void SetupComponents ()
 	{
-		// Link to page
 		GameObject pageAsset = PrefabPool.GetInstance ().GetNavigationPage ();
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
 

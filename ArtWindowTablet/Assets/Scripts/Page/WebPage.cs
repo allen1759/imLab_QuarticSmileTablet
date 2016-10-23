@@ -14,7 +14,7 @@ public class WebPage : Page {
 
 	public WebPage (Director director)
 	{
-		LinkComponents ();
+		SetupComponents ();
 		SetupButtonListener (director);
 	}
 
@@ -24,15 +24,15 @@ public class WebPage : Page {
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
 	}
 
-	private void LinkComponents ()
+	private void SetupComponents ()
 	{
 		// Link to page
-		GameObject pageAsset = PrefabPool.GetInstance ().GetNavigationPage ();
+		GameObject pageAsset = PrefabPool.GetInstance ().GetWebPage ();
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
 
 		// Setup background
-		Image doorNavigationPage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
-		doorNavigationPage.sprite = MediaPool.GetInstance ().GetWebPageImage ();
+//		Image doorNavigationPage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
+//		doorNavigationPage.sprite = MediaPool.GetInstance ().GetWebPageImage ();
 
 		// Link to remainingTimeText
 		startTime = Timer.GetInstance ().GetCurrentTime ();
