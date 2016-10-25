@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 
-public class WebPage : Page {
+public class FBConfirmPage : Page {
 
 	const double LIFE_TIME = 30.0;
 
@@ -12,32 +12,21 @@ public class WebPage : Page {
 
 	BackButtonClickListener backButtonClickListener;
 
-	GestureController gestureController;
-
-	public WebPage (Director director)
+	public FBConfirmPage (Director director)
 	{
 		SetupComponents ();
 		SetupButtonListener (director);
-
-		gestureController = new GestureController ("192.168.137.1", 50001);
-	}
-
-	~WebPage ()
-	{
-		gestureController.StopThread ();
 	}
 
 	public override void Update ()
 	{
 		double elapsedTime = Timer.GetInstance ().GetCurrentTime () - startTime;
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
-
-		gestureController.SendGesture ();
 	}
 
 	private void SetupComponents ()
 	{
-		GameObject pageAsset = PrefabPool.GetInstance ().GetWebPage ();
+		GameObject pageAsset = PrefabPool.GetInstance ().GetConfirmPage ();
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
 
 		// Link to remainingTimeText

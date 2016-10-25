@@ -4,8 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Director : MonoBehaviour, 
-						StateControllerListener/*,
-						WormholeImageListener*/ {
+						StateControllerListener,
+						WormholeImageListener {
 	
 	Stack<Page> pageStack;
 
@@ -13,6 +13,8 @@ public class Director : MonoBehaviour,
 
 	DirectorTask directorTask;
 	System.Object directorTaskLock;
+
+	byte[] receiveImage1, receiveImage2;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +30,9 @@ public class Director : MonoBehaviour,
 
 		pageStack = new Stack<Page> ();
 		pageStack.Push (new MainPage (this));
+//		pageStack.Push (new EmailInputPage (this));
 //		pageStack.Push (new DoorNavigationPage (this));
+		pageStack.Push (new WebPage (this));
 	}
 	
 	// Update is called once per frame
@@ -89,6 +93,11 @@ public class Director : MonoBehaviour,
 	}
 
 	public void CreateArtcenterPage ()
+	{
+		pageStack.Push (new WebPage (this));
+	}
+
+	public void CreateFBConfirmPage ()
 	{
 		pageStack.Push (new WebPage (this));
 	}
@@ -186,8 +195,16 @@ public class Director : MonoBehaviour,
 		}
 	}
 
+	public void OnNewImageAvailable(byte[] image1, byte[] image2)
+	{
+		receiveImage1 = image1;
+		receiveImage2 = image2;
+		AssignTask (new WormholeEndDirectorTask ());
+	}
+
 	void OnDestroy ()
 	{
+		pageStack.Clear ();
 		stateController.StopThread ();
 		Debug.Log ("destroy");
 	}

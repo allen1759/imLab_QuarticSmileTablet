@@ -3,41 +3,31 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 
-public class WebPage : Page {
+public class EmailConfirmPage : Page {
 
 	const double LIFE_TIME = 30.0;
 
 	double startTime;
 	Text remainingTimeText;
 
-	BackButtonClickListener backButtonClickListener;
+	EmailYesButtonClickListener emailYesButtonClickListener;
+	EmailNoButtonClickListener emailNoButtonClickListener;
 
-	GestureController gestureController;
-
-	public WebPage (Director director)
+	public EmailConfirmPage (Director director)
 	{
 		SetupComponents ();
 		SetupButtonListener (director);
-
-		gestureController = new GestureController ("192.168.137.1", 50001);
-	}
-
-	~WebPage ()
-	{
-		gestureController.StopThread ();
 	}
 
 	public override void Update ()
 	{
 		double elapsedTime = Timer.GetInstance ().GetCurrentTime () - startTime;
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
-
-		gestureController.SendGesture ();
 	}
 
 	private void SetupComponents ()
 	{
-		GameObject pageAsset = PrefabPool.GetInstance ().GetWebPage ();
+		GameObject pageAsset = PrefabPool.GetInstance ().GetConfirmPage ();
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
 
 		// Link to remainingTimeText
@@ -48,8 +38,12 @@ public class WebPage : Page {
 
 	private void SetupButtonListener (Director director)
 	{
-		Button backButton = page.transform.FindChild ("BackButton").gameObject.GetComponent<Button> ();
-		backButtonClickListener = new BackButtonClickListener (director);
-		backButton.onClick.AddListener (backButtonClickListener.OnClick);
+		Button yesButton = page.transform.FindChild ("YesButton").gameObject.GetComponent<Button> ();
+		emailYesButtonClickListener = new EmailYesButtonClickListener (director);
+		yesButton.onClick.AddListener (emailYesButtonClickListener.OnClick);
+
+		Button noButton = page.transform.FindChild ("NoButton").gameObject.GetComponent<Button> ();
+		emailNoButtonClickListener = new EmailNoButtonClickListener (director);
+		noButton.onClick.AddListener (emailNoButtonClickListener.OnClick);
 	}
 }

@@ -32,8 +32,8 @@ public class StateController
 		thread.Start ();
 	}
 
-	~StateController() {
-		// Stop thread.
+	~StateController() 
+	{
 		threadStarted = false;
 		thread.Join ();
 	}
@@ -96,9 +96,10 @@ public class StateController
 				if (!threadStarted)
 					break;
 			}
-			clientSocket.Close();
 			if (serverStream != null)
 				serverStream.Close ();
+			clientSocket.Close();
+
 		}
 		return;
 	}
