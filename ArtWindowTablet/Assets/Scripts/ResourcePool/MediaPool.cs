@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MediaPool {
 	//
@@ -16,6 +17,8 @@ public class MediaPool {
 	Sprite doorNavigationPageImage, libraryNavigationPageImage, cossNavigationPageImage, lakeNavigationPageImage;
 
 	Sprite originPageImage, conceptPageImage, webPageImage;
+
+	List<Sprite> arrowAnimation;
 
 	private MediaPool ()
 	{
@@ -41,8 +44,10 @@ public class MediaPool {
 		originPageImage = Resources.Load<Sprite> ("Media/page_image/origin_page_image");
 		conceptPageImage = Resources.Load<Sprite> ("Media/page_image/concept_page_image");
 		webPageImage = Resources.Load<Sprite> ("Media/page_image/web_page_image");
-		//object2
-		//object3
+
+		arrowAnimation = new List<Sprite> ();
+		for (int i = 0; i < 9; ++i)
+			arrowAnimation.Add (Resources.Load<Sprite> ("Media/arrow/" + i.ToString ()));
 	}
 
 	public static MediaPool GetInstance()
@@ -136,5 +141,9 @@ public class MediaPool {
 	{
 		return webPageImage;
 	}
-	// public Gamobjet ...
+
+	public List<Sprite> GetArrowAnimation ()
+	{
+		return arrowAnimation;
+	}
 }

@@ -10,7 +10,7 @@ public class PrefabPool {
 	GameObject locationPage;
 	GameObject videoPage, webPage;
 	GameObject wormholePage;
-	GameObject fbConfirmPage, emailConfirmPage, emailInputPage;
+	GameObject confirmPage, fbConfirmPage, emailConfirmPage, emailInputPage;
 	GameObject endingPage;
 	//
 
@@ -24,8 +24,9 @@ public class PrefabPool {
 
 		wormholePage = (GameObject)Resources.Load ("Prefabs/WormholePage");
 
-		fbConfirmPage = (GameObject)Resources.Load ("Prefabs/FBConfirmPage");
-		emailConfirmPage = (GameObject)Resources.Load ("Prefabs/EmailConfirmPage");
+		confirmPage = (GameObject)Resources.Load ("Prefabs/ConfirmPage");
+//		fbConfirmPage = (GameObject)Resources.Load ("Prefabs/FBConfirmPage");
+//		emailConfirmPage = (GameObject)Resources.Load ("Prefabs/EmailConfirmPage");
 		emailInputPage = (GameObject)Resources.Load ("Prefabs/EmailInputPage");
 
 		endingPage = (GameObject)Resources.Load ("Prefabs/EndingPage");
@@ -68,15 +69,20 @@ public class PrefabPool {
 		return wormholePage;
 	}
 
-	public GameObject GetFBConfirmPage ()
+	public GameObject GetConfirmPage ()
 	{
-		return fbConfirmPage;
+		return confirmPage;
 	}
 
-	public GameObject GetEmailConfirmPage ()
-	{
-		return emailConfirmPage;
-	}
+//	public GameObject GetFBConfirmPage ()
+//	{
+//		return fbConfirmPage;
+//	}
+//
+//	public GameObject GetEmailConfirmPage ()
+//	{
+//		return emailConfirmPage;
+//	}
 
 	public GameObject GetEmailInputPage ()
 	{

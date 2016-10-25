@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class MainPage : Page {
 
@@ -13,6 +14,12 @@ public class MainPage : Page {
 	ConceptButtonClickListener conceptButtonClickListener;
 	ArtcenterButtonClickListener artcenterButtonClickListener;
 	DeptButtonClickListener deptButtonClickListener;
+ 
+	const double FRAME_PERIOD = 0.25;
+	Image arrow;
+	int arrowAnimationIndex;
+	double arrowAnimationTime;
+	List<Sprite> arrowAnimation;
 
 	public MainPage (Director director)
 	{
@@ -72,9 +79,21 @@ public class MainPage : Page {
 
 		deptButtonClickListener = new DeptButtonClickListener (director);
 		deptButton.onClick.AddListener (deptButtonClickListener.OnClick);
+
+		arrow = page.transform.FindChild ("Arrow").gameObject.GetComponent<Image> ();
+		arrowAnimationIndex = 0;
+		arrowAnimationTime = Timer.GetInstance ().GetCurrentTime ();
+		arrowAnimation = MediaPool.GetInstance ().GetArrowAnimation ();
+		arrow.sprite = arrowAnimation[arrowAnimationIndex];
 	}
 
 	public override void Update ()
 	{
+		double currentTime = Timer.GetInstance ().GetCurrentTime ();
+		if (currentTime - arrowAnimationTime > FRAME_PERIOD) {
+			arrow.sprite = arrowAnimation[arrowAnimationIndex];
+			arrowAnimationIndex = (arrowAnimationIndex + 1) % arrowAnimation.Count;
+			arrowAnimationTime = currentTime;
+		}
 	}
 }
