@@ -13,7 +13,7 @@ public class KeyboardListener {
 
 	public void OnClick (string key)
 	{
-		Debug.Log (key);
+//		Debug.Log (key);
 		if (key == "<") {
 			if (emailField.text.Length > 0)
 				emailField.text = emailField.text.Substring (0, emailField.text.Length - 1);

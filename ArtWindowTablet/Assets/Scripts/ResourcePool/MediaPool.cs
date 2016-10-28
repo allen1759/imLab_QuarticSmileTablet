@@ -22,7 +22,6 @@ public class MediaPool {
 
 	private MediaPool ()
 	{
-		//mainPage = (GameObject)Resources.Load ("Media/MainPage");
 		// Assets in main page
 		mainPageImage = Resources.Load<Sprite> ("Media/page_image/main_page_image");
 
@@ -56,11 +55,6 @@ public class MediaPool {
 			instance = new MediaPool ();
 		return instance;
 	}
-
-//	public GameObject GetMainpage ()
-//	{
-//		return mainPage;
-//	}
 
 	public Sprite GetMainPageImage ()
 	{

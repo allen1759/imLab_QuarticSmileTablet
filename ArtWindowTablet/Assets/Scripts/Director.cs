@@ -15,6 +15,7 @@ public class Director : MonoBehaviour,
 	System.Object directorTaskLock;
 
 	byte[] receiveImage1, receiveImage2;
+	public Place arrowPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -30,9 +31,9 @@ public class Director : MonoBehaviour,
 
 		pageStack = new Stack<Page> ();
 		pageStack.Push (new MainPage (this));
-		pageStack.Push (new EmailInputPage (this));
 //		pageStack.Push (new DoorNavigationPage (this));
 //		pageStack.Push (new WebPage (this));
+//		pageStack.Push (new EmailInputPage (this));
 	}
 	
 	// Update is called once per frame
@@ -125,12 +126,16 @@ public class Director : MonoBehaviour,
 	{
 		// display arrow effect
 		if (string.Compare (command, "LAKE_TO_DOOR", false) == 0) {
+			arrowPosition = Place.LAKE;
 		}
 		if (string.Compare (command, "DOOR_TO_LIB", false) == 0) {
+			arrowPosition = Place.DOOR;
 		}
 		if (string.Compare (command, "SOCIAL_TO_LAKE", false) == 0) {
+			arrowPosition = Place.COSS;
 		}
 		if (string.Compare (command, "LIB_TO_SOCIAL", false) == 0) {
+			arrowPosition = Place.LIBRARY;
 		}
 
 		// location buttons start
@@ -210,3 +215,7 @@ public class Director : MonoBehaviour,
 	}
 }
 
+public enum Place
+{
+	DOOR = 0, LIBRARY = 1, COSS = 2, LAKE = 3
+}
