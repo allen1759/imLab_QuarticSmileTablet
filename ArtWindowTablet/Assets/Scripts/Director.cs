@@ -14,8 +14,9 @@ public class Director : MonoBehaviour,
 	DirectorTask directorTask;
 	System.Object directorTaskLock;
 
-	byte[] receiveImage1, receiveImage2;
 	public Place arrowPosition;
+	byte[] receiveImage1, receiveImage2;
+	public EmailSender emailSender;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,8 @@ public class Director : MonoBehaviour,
 
 		directorTask = null;
 		directorTaskLock = new System.Object ();
+
+		emailSender = new EmailSender ();
 
 		pageStack = new Stack<Page> ();
 		pageStack.Push (new MainPage (this));
@@ -51,7 +54,7 @@ public class Director : MonoBehaviour,
 			pageStack.Peek ().Update ();
 	}
 
-	private void AssignTask (DirectorTask newTask)
+	public void AssignTask (DirectorTask newTask)
 	{
 		lock (directorTaskLock) {
 			directorTask = newTask;
@@ -100,6 +103,19 @@ public class Director : MonoBehaviour,
 
 	public void CreateFBConfirmPage ()
 	{
+		// not finish
+		pageStack.Push (new WebPage (this));
+	}
+
+	public void CreateEmailConfirmPage ()
+	{
+		// not finish
+		pageStack.Push (new WebPage (this));
+	}
+
+	public void CreateEndPage ()
+	{
+		// not finish
 		pageStack.Push (new WebPage (this));
 	}
 
@@ -115,6 +131,10 @@ public class Director : MonoBehaviour,
 			Destroy (pageStack.Peek ().GetPage ());
 			pageStack.Pop ();
 		}
+	}
+
+	public void SendEmail ()
+	{
 	}
 
 	public void SendStateCommand (string command)
@@ -192,11 +212,16 @@ public class Director : MonoBehaviour,
 		}
 
 		if (string.Compare (command, "WORMHOLE_START", false) == 0) {
+			// assign task : push wh page
 		}
 
 		if (command.Length > 11 && string.Compare (command.Substring (0, 11), "EMAIL_SUCC_", false) == 0) {
+			emailSender.SetOtherEmail (command.Substring (11, command.Length - 11));
+			// assign task : destoy and push end page
 		}
 		if (string.Compare (command, "EMAIL_FAILED", false) == 0) {
+			emailSender.init ();
+			// assign task : destroy and push end page
 		}
 	}
 
@@ -211,7 +236,7 @@ public class Director : MonoBehaviour,
 	{
 		pageStack.Clear ();
 		stateController.StopThread ();
-		Debug.Log ("destroy");
+		Debug.Log ("destroy director");
 	}
 }
 
