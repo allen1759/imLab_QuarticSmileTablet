@@ -27,7 +27,11 @@ public class FBConfirmPage : Page {
 	private void SetupComponents ()
 	{
 		GameObject pageAsset = PrefabPool.GetInstance ().GetConfirmPage ();
-		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
+		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);
+
+		// Setup background
+		Image confirmPage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
+		confirmPage.sprite = MediaPool.GetInstance ().GetEmailConfirmPageImage ();
 
 		// Link to remainingTimeText
 		startTime = Timer.GetInstance ().GetCurrentTime ();

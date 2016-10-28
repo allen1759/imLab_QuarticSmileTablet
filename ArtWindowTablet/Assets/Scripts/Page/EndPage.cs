@@ -3,17 +3,16 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 
-public class EmailConfirmPage : Page {
+public class EndPage : Page {
 
 	const double LIFE_TIME = 30.0;
 
 	double startTime;
 	Text remainingTimeText;
 
-	EmailYesButtonClickListener emailYesButtonClickListener;
-	EmailNoButtonClickListener emailNoButtonClickListener;
+	BackButtonClickListener backButtonClickListener;
 
-	public EmailConfirmPage (Director director)
+	public EndPage (Director director)
 	{
 		SetupComponents ();
 		SetupButtonListener (director);
@@ -27,12 +26,12 @@ public class EmailConfirmPage : Page {
 
 	private void SetupComponents ()
 	{
-		GameObject pageAsset = PrefabPool.GetInstance ().GetConfirmPage ();
+		GameObject pageAsset = PrefabPool.GetInstance ().GetEndingPage ();
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);
 
 		// Setup background
 		Image confirmPage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
-		confirmPage.sprite = MediaPool.GetInstance ().GetEmailConfirmPageImage ();
+		confirmPage.sprite = MediaPool.GetInstance ().GetEndPageImage ();
 
 		// Link to remainingTimeText
 		startTime = Timer.GetInstance ().GetCurrentTime ();
@@ -42,12 +41,8 @@ public class EmailConfirmPage : Page {
 
 	private void SetupButtonListener (Director director)
 	{
-		Button yesButton = page.transform.FindChild ("YesButton").gameObject.GetComponent<Button> ();
-		emailYesButtonClickListener = new EmailYesButtonClickListener (director);
-		yesButton.onClick.AddListener (emailYesButtonClickListener.OnClick);
-
-		Button noButton = page.transform.FindChild ("NoButton").gameObject.GetComponent<Button> ();
-		emailNoButtonClickListener = new EmailNoButtonClickListener (director);
-		noButton.onClick.AddListener (emailNoButtonClickListener.OnClick);
+		Button backButton = page.transform.FindChild ("BackButton").gameObject.GetComponent<Button> ();
+		backButtonClickListener = new BackButtonClickListener (director);
+		backButton.onClick.AddListener (backButtonClickListener.OnClick);
 	}
 }

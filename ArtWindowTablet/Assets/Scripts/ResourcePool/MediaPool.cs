@@ -18,6 +18,10 @@ public class MediaPool {
 
 	Sprite originPageImage, conceptPageImage, webPageImage;
 
+	Sprite fbConfirmPageImage, emailConfirmPageImage;
+
+	Sprite endPageImage;
+
 	List<Sprite> arrowAnimation;
 
 	private MediaPool ()
@@ -43,6 +47,11 @@ public class MediaPool {
 		originPageImage = Resources.Load<Sprite> ("Media/page_image/origin_page_image");
 		conceptPageImage = Resources.Load<Sprite> ("Media/page_image/concept_page_image");
 		webPageImage = Resources.Load<Sprite> ("Media/page_image/web_page_image");
+
+		fbConfirmPageImage = Resources.Load<Sprite> ("Media/page_image/fb_confirm_page_image");
+		emailConfirmPageImage = Resources.Load<Sprite> ("Media/page_image/email_confirm_page_image");
+
+		endPageImage = Resources.Load<Sprite> ("Media/page_image/end_page_image");
 
 		arrowAnimation = new List<Sprite> ();
 		for (int i = 0; i < 9; ++i)
@@ -134,6 +143,21 @@ public class MediaPool {
 	public Sprite GetWebPageImage ()
 	{
 		return webPageImage;
+	}
+
+	public Sprite GetFBConfirmPageImage ()
+	{
+		return fbConfirmPageImage;
+	}
+
+	public Sprite GetEmailConfirmPageImage ()
+	{
+		return emailConfirmPageImage;
+	}
+
+	public Sprite GetEndPageImage ()
+	{
+		return endPageImage;
 	}
 
 	public List<Sprite> GetArrowAnimation ()

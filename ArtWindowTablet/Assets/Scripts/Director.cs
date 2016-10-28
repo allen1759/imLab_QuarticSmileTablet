@@ -37,6 +37,7 @@ public class Director : MonoBehaviour,
 //		pageStack.Push (new DoorNavigationPage (this));
 //		pageStack.Push (new WebPage (this));
 //		pageStack.Push (new EmailInputPage (this));
+		pageStack.Push (new EndPage (this));
 	}
 	
 	// Update is called once per frame
@@ -103,20 +104,22 @@ public class Director : MonoBehaviour,
 
 	public void CreateFBConfirmPage ()
 	{
-		// not finish
-		pageStack.Push (new WebPage (this));
+		pageStack.Push (new FBConfirmPage (this));
 	}
 
 	public void CreateEmailConfirmPage ()
 	{
-		// not finish
-		pageStack.Push (new WebPage (this));
+		pageStack.Push (new EmailConfirmPage (this));
+	}
+
+	public void CreateEmailInputPage ()
+	{
+		pageStack.Push (new EmailInputPage (this));
 	}
 
 	public void CreateEndPage ()
 	{
-		// not finish
-		pageStack.Push (new WebPage (this));
+		pageStack.Push (new EndPage (this));
 	}
 
 	public void DestroyCurrentPage ()
@@ -131,10 +134,6 @@ public class Director : MonoBehaviour,
 			Destroy (pageStack.Peek ().GetPage ());
 			pageStack.Pop ();
 		}
-	}
-
-	public void SendEmail ()
-	{
 	}
 
 	public void SendStateCommand (string command)

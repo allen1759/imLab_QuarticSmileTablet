@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EmailConfirmEndDirectorTask : DirectorTask {
+public class EmailNoEndDirectorTask : DirectorTask {
 
 	public void Action (Director director)
 	{
