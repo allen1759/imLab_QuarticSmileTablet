@@ -36,7 +36,7 @@ public class Director : MonoBehaviour,
 		pageStack.Push (new MainPage (this));
 //		pageStack.Push (new DoorNavigationPage (this));
 //		pageStack.Push (new WebPage (this));
-		pageStack.Push (new WormholePage(this));
+//		pageStack.Push (new WormholePage(this));
 //		pageStack.Push (new EmailInputPage (this));
 //		pageStack.Push (new EndPage (this));
 	}
@@ -248,93 +248,84 @@ public class Director : MonoBehaviour,
 
 	private void DebuggingCode ()
 	{
-		if (Input.GetKey(KeyCode.Alpha4)) {
+		if (Input.GetKeyDown(KeyCode.Alpha4)) {
 			arrowPosition = Place.LAKE;
 		}
-		if (Input.GetKey(KeyCode.Alpha1)) {
+		if (Input.GetKeyDown(KeyCode.Alpha1)) {
 			arrowPosition = Place.DOOR;
 		}
-		if (Input.GetKey(KeyCode.Alpha3)) {
+		if (Input.GetKeyDown(KeyCode.Alpha3)) {
 			arrowPosition = Place.COSS;
 		}
-		if (Input.GetKey(KeyCode.Alpha2)) {
+		if (Input.GetKeyDown(KeyCode.Alpha2)) {
 			arrowPosition = Place.LIBRARY;
 		}
 
-		if (Input.GetKey(KeyCode.Q)) {
+		if (Input.GetKeyDown(KeyCode.Q)) {
 			AssignTask (new DoorStartDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.W)) {
+		if (Input.GetKeyDown(KeyCode.W)) {
 			AssignTask (new LibraryStartDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.E)) {
+		if (Input.GetKeyDown(KeyCode.E)) {
 			AssignTask (new CossStartDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.R)) {
+		if (Input.GetKeyDown(KeyCode.R)) {
 			AssignTask (new LakeStartDirectorTask ());
 		}
 
-		if (Input.GetKey(KeyCode.A)) {
+		if (Input.GetKeyDown(KeyCode.A)) {
 			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.S)) {
+		if (Input.GetKeyDown(KeyCode.S)) {
 			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.D)) {
+		if (Input.GetKeyDown(KeyCode.D)) {
 			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.F)) {
+		if (Input.GetKeyDown(KeyCode.F)) {
 			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
 
 		// sidebar buttons start
-		if (Input.GetKey(KeyCode.T)) {
+		if (Input.GetKeyDown(KeyCode.T)) {
 			AssignTask (new OriginStartDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.Y)) {
+		if (Input.GetKeyDown(KeyCode.Y)) {
 			AssignTask (new ConceptStartDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.U)) {
+		if (Input.GetKeyDown(KeyCode.U)) {
 			AssignTask (new DeptStartDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.I)) {
+		if (Input.GetKeyDown(KeyCode.I)) {
 			AssignTask (new ArtcenterStartDirectorTask ());
 		}
 
-		// sidebar buttons end
-		if (Input.GetKey(KeyCode.G)) {
-			AssignTask (new DestroyCurrentPageDirectorTask ());
-		}
-		if (Input.GetKey(KeyCode.H)) {
-			AssignTask (new DestroyCurrentPageDirectorTask ());
-		}
-		if (Input.GetKey(KeyCode.J)) {
+		if (Input.GetKeyDown (KeyCode.B)) {
+			Debug.Log ("destroy current page");
 			AssignTask (new DestroyCurrentPageDirectorTask ());
 		}
 
-		if (Input.GetKey(KeyCode.X)) {
+
+		if (Input.GetKeyDown(KeyCode.X)) {
 			AssignTask (new WormholeStartDirectorTask ());
 		}
-		if (Input.GetKey (KeyCode.C)) {
+		if (Input.GetKeyDown (KeyCode.C)) {
 			AssignTask (new WormholeEndDirectorTask ());
 		}
-		if (Input.GetKey (KeyCode.V)) {
+		if (Input.GetKeyDown (KeyCode.V)) {
 			AssignTask (new EmailConfirmStartDirectorTask ());
 		}
 
-		if (Input.GetKey(KeyCode.Alpha5)) {
+		if (Input.GetKeyDown(KeyCode.Alpha5)) {
 			emailSender.SetOtherEmail ("allen369123@gmail.com");
 			AssignTask (new EndPageStartDirectorTask ());
 		}
-		if (Input.GetKey(KeyCode.Alpha6)) {
+		if (Input.GetKeyDown(KeyCode.Alpha6)) {
 			emailSender.init ();
 			AssignTask (new EndPageStartDirectorTask ());
 		}
 
-		if (Input.GetKey (KeyCode.B)) {
-			Debug.Log ("destroy current page");
-			AssignTask (new DestroyCurrentPageDirectorTask ());
-		}
 	}
 }
 
