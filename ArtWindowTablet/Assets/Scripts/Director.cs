@@ -54,6 +54,8 @@ public class Director : MonoBehaviour,
 			Debug.Log ("NO PAGE IN DIRECTOR!!");
 		else
 			pageStack.Peek ().Update ();
+
+		DebuggingCode ();
 	}
 
 	public void AssignTask (DirectorTask newTask)
@@ -217,16 +219,16 @@ public class Director : MonoBehaviour,
 		}
 
 		if (string.Compare (command, "WORMHOLE_START", false) == 0) {
-			// assign task : push wh page
+			AssignTask (new WormholeStartDirectorTask ());
 		}
 
 		if (command.Length > 11 && string.Compare (command.Substring (0, 11), "EMAIL_SUCC_", false) == 0) {
 			emailSender.SetOtherEmail (command.Substring (11, command.Length - 11));
-			// assign task : destoy and push end page
+			AssignTask (new EndPageStartDirectorTask ());
 		}
 		if (string.Compare (command, "EMAIL_FAILED", false) == 0) {
 			emailSender.init ();
-			// assign task : destroy and push end page
+			AssignTask (new EndPageStartDirectorTask ());
 		}
 	}
 
@@ -242,6 +244,97 @@ public class Director : MonoBehaviour,
 		pageStack.Clear ();
 		stateController.StopThread ();
 		Debug.Log ("destroy director");
+	}
+
+	private void DebuggingCode ()
+	{
+		if (Input.GetKey(KeyCode.Alpha4)) {
+			arrowPosition = Place.LAKE;
+		}
+		if (Input.GetKey(KeyCode.Alpha1)) {
+			arrowPosition = Place.DOOR;
+		}
+		if (Input.GetKey(KeyCode.Alpha3)) {
+			arrowPosition = Place.COSS;
+		}
+		if (Input.GetKey(KeyCode.Alpha2)) {
+			arrowPosition = Place.LIBRARY;
+		}
+
+		if (Input.GetKey(KeyCode.Q)) {
+			AssignTask (new DoorStartDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.W)) {
+			AssignTask (new LibraryStartDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.E)) {
+			AssignTask (new CossStartDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.R)) {
+			AssignTask (new LakeStartDirectorTask ());
+		}
+
+		if (Input.GetKey(KeyCode.A)) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.S)) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.D)) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.F)) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
+
+		// sidebar buttons start
+		if (Input.GetKey(KeyCode.T)) {
+			AssignTask (new OriginStartDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.Y)) {
+			AssignTask (new ConceptStartDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.U)) {
+			AssignTask (new DeptStartDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.I)) {
+			AssignTask (new ArtcenterStartDirectorTask ());
+		}
+
+		// sidebar buttons end
+		if (Input.GetKey(KeyCode.G)) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.H)) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.J)) {
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
+
+		if (Input.GetKey(KeyCode.X)) {
+			AssignTask (new WormholeStartDirectorTask ());
+		}
+		if (Input.GetKey (KeyCode.C)) {
+			AssignTask (new WormholeEndDirectorTask ());
+		}
+		if (Input.GetKey (KeyCode.V)) {
+			AssignTask (new EmailConfirmStartDirectorTask ());
+		}
+
+		if (Input.GetKey(KeyCode.Alpha5)) {
+			emailSender.SetOtherEmail ("allen369123@gmail.com");
+			AssignTask (new EndPageStartDirectorTask ());
+		}
+		if (Input.GetKey(KeyCode.Alpha6)) {
+			emailSender.init ();
+			AssignTask (new EndPageStartDirectorTask ());
+		}
+
+		if (Input.GetKey (KeyCode.B)) {
+			Debug.Log ("destroy current page");
+			AssignTask (new DestroyCurrentPageDirectorTask ());
+		}
 	}
 }
 
