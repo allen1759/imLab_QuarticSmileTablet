@@ -36,6 +36,7 @@ public class Director : MonoBehaviour,
 		pageStack.Push (new MainPage (this));
 //		pageStack.Push (new DoorNavigationPage (this));
 //		pageStack.Push (new WebPage (this));
+		pageStack.Push (new WormholePage(this));
 //		pageStack.Push (new EmailInputPage (this));
 //		pageStack.Push (new EndPage (this));
 	}
@@ -100,6 +101,11 @@ public class Director : MonoBehaviour,
 	public void CreateArtcenterPage ()
 	{
 		pageStack.Push (new WebPage (this));
+	}
+
+	public void CreateWormholePage ()
+	{
+		pageStack.Push (new WormholePage (this));
 	}
 
 	public void CreateFBConfirmPage ()

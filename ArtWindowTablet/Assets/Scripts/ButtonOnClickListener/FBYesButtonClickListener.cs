@@ -14,6 +14,6 @@ public class FBYesButtonClickListener : ButtonClickListener {
 	public void OnClick ()
 	{
 		director.SendStateCommand ("FB_YES");
-		director.AssignTask (new FBConfirmEndDirectorTask());
+		director.AssignTask (new EmailConfirmStartDirectorTask());
 	}
 }

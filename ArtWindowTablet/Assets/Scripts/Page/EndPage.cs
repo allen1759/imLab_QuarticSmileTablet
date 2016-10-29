@@ -30,8 +30,8 @@ public class EndPage : Page {
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);
 
 		// Setup background
-		Image confirmPage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
-		confirmPage.sprite = MediaPool.GetInstance ().GetEndPageImage ();
+//		Image confirmPage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
+//		confirmPage.sprite = MediaPool.GetInstance ().GetEndPageImage ();
 
 		// Link to remainingTimeText
 		startTime = Timer.GetInstance ().GetCurrentTime ();

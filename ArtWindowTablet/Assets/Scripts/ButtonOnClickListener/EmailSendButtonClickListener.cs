@@ -15,5 +15,6 @@ public class EmailSendButtonClickListener {
 	{
 		director.emailSender.SetMyEmail (email);
 		director.SendStateCommand ("EMAIL_YES_" + email);
+		director.AssignTask (new EndPageStartDirectorTask ());
 	}
 }

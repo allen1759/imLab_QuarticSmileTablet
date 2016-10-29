@@ -44,10 +44,10 @@ public class MainPage : Page {
 		
 	private void SetupButtonListener ()
 	{
-		Button doorButton = page.transform.FindChild ("Location/DoorButton").gameObject.GetComponent<Button> ();
-		Button libraryButton = page.transform.FindChild ("Location/LibraryButton").gameObject.GetComponent<Button> ();
-		Button cossButton = page.transform.FindChild ("Location/CossButton").gameObject.GetComponent<Button> ();
-		Button lakeButton = page.transform.FindChild ("Location/LakeButton").gameObject.GetComponent<Button> ();
+		Button doorButton = page.transform.FindChild ("Navigation/DoorButton").gameObject.GetComponent<Button> ();
+		Button libraryButton = page.transform.FindChild ("Navigation/LibraryButton").gameObject.GetComponent<Button> ();
+		Button cossButton = page.transform.FindChild ("Navigation/CossButton").gameObject.GetComponent<Button> ();
+		Button lakeButton = page.transform.FindChild ("Navigation/LakeButton").gameObject.GetComponent<Button> ();
 
 		Button originButton = page.transform.FindChild ("Sidebar/OriginButton").gameObject.GetComponent<Button> ();
 		Button conceptButton = page.transform.FindChild ("Sidebar/ConceptButton").gameObject.GetComponent<Button> ();

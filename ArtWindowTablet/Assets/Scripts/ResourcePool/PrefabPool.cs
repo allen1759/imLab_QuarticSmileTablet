@@ -17,16 +17,15 @@ public class PrefabPool {
 	private PrefabPool ()
 	{
 		mainPage = (GameObject)Resources.Load ("Prefabs/MainPage");
+
 		navigationPage = (GameObject)Resources.Load ("Prefabs/NavigationPage");
-		locationPage = (GameObject)Resources.Load ("Prefabs/LocationPage");
+//		locationPage = (GameObject)Resources.Load ("Prefabs/LocationPage");
 		videoPage = (GameObject)Resources.Load ("Prefabs/VideoPage");
 		webPage = (GameObject)Resources.Load ("Prefabs/WebPage");
 
 		wormholePage = (GameObject)Resources.Load ("Prefabs/WormholePage");
 
 		confirmPage = (GameObject)Resources.Load ("Prefabs/ConfirmPage");
-//		fbConfirmPage = (GameObject)Resources.Load ("Prefabs/FBConfirmPage");
-//		emailConfirmPage = (GameObject)Resources.Load ("Prefabs/EmailConfirmPage");
 		emailInputPage = (GameObject)Resources.Load ("Prefabs/EmailInputPage");
 
 		endingPage = (GameObject)Resources.Load ("Prefabs/EndingPage");
@@ -49,10 +48,10 @@ public class PrefabPool {
 		return navigationPage;
 	}
 
-	public GameObject GetLocationPage ()
-	{
-		return locationPage;
-	}
+//	public GameObject GetLocationPage ()
+//	{
+//		return locationPage;
+//	}
 
 	public GameObject GetVideoPage ()
 	{

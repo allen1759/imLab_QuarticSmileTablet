@@ -14,5 +14,6 @@ public class EmailNoButtonClickListener : ButtonClickListener {
 	public void OnClick ()
 	{
 		director.SendStateCommand ("EMAIL_NO");
+		director.AssignTask (new EndPageStartDirectorTask ());
 	}
 }

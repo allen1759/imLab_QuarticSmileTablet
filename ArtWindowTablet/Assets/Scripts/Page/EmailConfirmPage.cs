@@ -5,6 +5,8 @@ using System.Collections;
 
 public class EmailConfirmPage : Page {
 
+	Director director;
+
 	const double LIFE_TIME = 30.0;
 
 	double startTime;
@@ -15,6 +17,7 @@ public class EmailConfirmPage : Page {
 
 	public EmailConfirmPage (Director director)
 	{
+		this.director = director;
 		SetupComponents ();
 		SetupButtonListener (director);
 	}
@@ -23,6 +26,12 @@ public class EmailConfirmPage : Page {
 	{
 		double elapsedTime = Timer.GetInstance ().GetCurrentTime () - startTime;
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
+
+		// same action when no button click
+		if (LIFE_TIME - elapsedTime <= 0) {
+			director.SendStateCommand ("EMAIL_NO");
+			director.AssignTask (new EndPageStartDirectorTask ());
+		}
 	}
 
 	private void SetupComponents ()

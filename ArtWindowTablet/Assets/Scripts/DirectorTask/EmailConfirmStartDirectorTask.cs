@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EmailYesEndDirectorTask : DirectorTask {
+public class EmailConfirmStartDirectorTask : DirectorTask {
 
 	public void Action (Director director)
 	{
 		director.DestroyCurrentPage ();
-		director.CreateEmailInputPage ();
+		director.CreateEmailConfirmPage ();
 	}
 }

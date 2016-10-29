@@ -4,15 +4,18 @@ using System.Collections;
 
 public class KeyboardListener {
 
+	EmailInputPage emailInputPage;
 	InputField emailField;
 
-	public KeyboardListener (InputField emailField)
+	public KeyboardListener (EmailInputPage emailInputPage, InputField emailField)
 	{
+		this.emailInputPage = emailInputPage;
 		this.emailField = emailField;
 	}
 
 	public void OnClick (string key)
 	{
+		emailInputPage.ResetTimer ();
 //		Debug.Log (key);
 		if (key == "<") {
 			if (emailField.text.Length > 0)

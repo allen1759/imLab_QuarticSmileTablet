@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EmailInputEndDirectorTask : DirectorTask {
+public class WormholeStartDirectorTask : DirectorTask {
 
 	public void Action (Director director)
 	{
 		director.DestroyCurrentPage ();
-		director.CreateEndPage ();
+		director.CreateWormholePage ();
 	}
 }
