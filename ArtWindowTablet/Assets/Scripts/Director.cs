@@ -37,7 +37,7 @@ public class Director : MonoBehaviour,
 //		pageStack.Push (new DoorNavigationPage (this));
 //		pageStack.Push (new WebPage (this));
 //		pageStack.Push (new EmailInputPage (this));
-		pageStack.Push (new EndPage (this));
+//		pageStack.Push (new EndPage (this));
 	}
 	
 	// Update is called once per frame
