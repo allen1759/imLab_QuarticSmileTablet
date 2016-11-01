@@ -10,7 +10,7 @@ public class EndPage : Page {
 	double startTime;
 	Text remainingTimeText;
 
-	BackButtonClickListener backButtonClickListener;
+	RestartButtonClickListener restartButtonClickListener;
 
 	public EndPage (Director director)
 	{
@@ -42,7 +42,7 @@ public class EndPage : Page {
 	private void SetupButtonListener (Director director)
 	{
 		Button backButton = page.transform.FindChild ("BackButton").gameObject.GetComponent<Button> ();
-		backButtonClickListener = new BackButtonClickListener (director);
-		backButton.onClick.AddListener (backButtonClickListener.OnClick);
+		restartButtonClickListener = new RestartButtonClickListener (director);
+		backButton.onClick.AddListener (restartButtonClickListener.OnClick);
 	}
 }
