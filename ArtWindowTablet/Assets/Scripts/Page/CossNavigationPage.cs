@@ -5,15 +5,19 @@ using System.Collections;
 
 public class CossNavigationPage : Page {
 
+	private Director director;
+
 	const double LIFE_TIME = 30.0;
 
-	double startTime;
-	Text remainingTimeText;
+	private double startTime;
+	private Text remainingTimeText;
+	private bool endSession;
 
-	BackButtonClickListener backButtonClickListener;
+	private BackButtonClickListener backButtonClickListener;
 
 	public CossNavigationPage (Director director)
 	{
+		this.director = director;
 		SetupComponents ();
 		SetupButtonListener (director);
 	}
@@ -21,7 +25,13 @@ public class CossNavigationPage : Page {
 	public override void Update ()
 	{
 		double elapsedTime = Timer.GetInstance ().GetCurrentTime () - startTime;
-		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
+		remainingTimeText.text = Math.Max (Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)), 0).ToString ();
+
+		// same action when back button click
+		if (LIFE_TIME - elapsedTime <= 0 && !endSession) {
+			director.SendStateCommand ("BACK");
+			endSession = true;
+		}
 	}
 
 	private void SetupComponents ()
@@ -37,6 +47,7 @@ public class CossNavigationPage : Page {
 		startTime = Timer.GetInstance ().GetCurrentTime ();
 		remainingTimeText = page.transform.FindChild ("RemainingTimeText").gameObject.GetComponent<Text> ();
 		remainingTimeText.text = "0";
+		endSession = false;
 	}
 
 	private void SetupButtonListener (Director director)

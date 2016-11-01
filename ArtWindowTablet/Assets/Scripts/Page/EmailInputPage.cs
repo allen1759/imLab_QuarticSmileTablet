@@ -51,7 +51,7 @@ public class EmailInputPage : Page {
 		keyboardListener = new KeyboardListener (this, inputField);
 
 		float[] startPosX = { -620, -565, -565, -565 }; 
-		float startPosY = 150;
+		float startPosY = -50;
 		float deltaX = 110, deltaY = -110;
 		for(int i = 0; i < buttonName.Length; i += 1) {
 			for (int j = 0; j < buttonName [i].Length; j += 1) {

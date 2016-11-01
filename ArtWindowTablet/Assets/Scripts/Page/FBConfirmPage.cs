@@ -25,7 +25,7 @@ public class FBConfirmPage : Page {
 	public override void Update ()
 	{
 		double elapsedTime = Timer.GetInstance ().GetCurrentTime () - startTime;
-		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
+		remainingTimeText.text = Math.Max (Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)), 0).ToString ();
 
 		// same action when no button click
 		if (LIFE_TIME - elapsedTime <= 0) {
