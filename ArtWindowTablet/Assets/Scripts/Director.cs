@@ -15,7 +15,7 @@ public class Director : MonoBehaviour,
 	System.Object directorTaskLock;
 
 	public Place arrowPosition;
-	byte[] receiveImage1, receiveImage2;
+//	byte[] receiveImage1, receiveImage2;
 	public EmailSender emailSender;
 
 	// Use this for initialization
@@ -234,8 +234,9 @@ public class Director : MonoBehaviour,
 
 	public void OnNewImageAvailable(byte[] image1, byte[] image2)
 	{
-		receiveImage1 = image1;
-		receiveImage2 = image2;
+//		receiveImage1 = image1;
+//		receiveImage2 = image2;
+		emailSender.loadImage (image1, image2);
 		AssignTask (new WormholeEndDirectorTask ());
 	}
 

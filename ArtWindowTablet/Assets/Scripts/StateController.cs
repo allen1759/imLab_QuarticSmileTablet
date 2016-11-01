@@ -50,6 +50,7 @@ public class StateController
 	
 	public void SendMessage (string command)
 	{
+		Debug.Log ("SendMessage: " + command);
 		if (isConnected) {
 			byte[] sendBuffer = System.Text.Encoding.ASCII.GetBytes (command);
 			serverStream.Write (sendBuffer, 0, sendBuffer.Length);
