@@ -11,6 +11,8 @@ public class Director : MonoBehaviour,
 
 	StateController stateController;
 
+	WormholeImageReceiver wormholeReceiver;
+
 	DirectorTask directorTask;
 	System.Object directorTaskLock;
 
@@ -26,6 +28,9 @@ public class Director : MonoBehaviour,
 
 		stateController = new StateController ("192.168.137.1", 50000);
 		stateController.SetListener (this);
+
+		wormholeReceiver = new WormholeImageReceiver ();
+		wormholeReceiver.SetListener (this);
 
 		directorTask = null;
 		directorTaskLock = new System.Object ();
