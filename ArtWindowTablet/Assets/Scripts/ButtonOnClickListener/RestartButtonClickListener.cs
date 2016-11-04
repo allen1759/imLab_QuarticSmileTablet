@@ -14,5 +14,6 @@ public class RestartButtonClickListener : ButtonClickListener {
 	public void OnClick ()
 	{
 		director.SendStateCommand ("RESTART");
+		director.AssignTask (new DestroyCurrentPageDirectorTask ());
 	}
 }
