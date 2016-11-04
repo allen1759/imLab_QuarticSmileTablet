@@ -7,7 +7,7 @@ public class WormholePage : Page {
 
 	Director director;
 
-	const double LIFE_TIME = 9.0;
+	const double LIFE_TIME = 90.0;
 
 	double startTime;
 	Text remainingTimeText;

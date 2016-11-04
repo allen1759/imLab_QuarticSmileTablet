@@ -11,4 +11,8 @@ public abstract class Page {
 	}
 
 	public abstract void Update ();
+
+	public virtual void End ()
+	{
+	}
 }

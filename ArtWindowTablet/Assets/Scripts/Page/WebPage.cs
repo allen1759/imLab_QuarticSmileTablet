@@ -22,7 +22,12 @@ public class WebPage : Page {
 		gestureController = new GestureController ("192.168.137.1", 50001);
 	}
 
-	~WebPage ()
+//	~WebPage ()
+//	{
+//		gestureController.StopThread ();
+//	}
+
+	public override void End ()
 	{
 		gestureController.StopThread ();
 	}
