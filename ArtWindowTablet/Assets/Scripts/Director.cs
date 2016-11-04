@@ -229,7 +229,6 @@ public class Director : MonoBehaviour,
 
 		if (command.Length > 11 && string.Compare (command.Substring (0, 11), "EMAIL_SUCC_", false) == 0) {
 			emailSender.SetOtherEmail (command.Substring (11, command.Length - 11));
-			AssignTask (new EndPageStartDirectorTask ());
 		}
 		if (string.Compare (command, "EMAIL_FAILED", false) == 0) {
 			emailSender.init ();
