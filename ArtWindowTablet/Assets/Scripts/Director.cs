@@ -4,20 +4,18 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Director : MonoBehaviour, 
-						StateControllerListener,
-						WormholeImageListener {
+						StateControllerListener {
 	
 	Stack<Page> pageStack;
 
 	StateController stateController;
 
-	WormholeImageReceiver wormholeReceiver;
+//	WormholeImageReceiver wormholeReceiver;
 
 	DirectorTask directorTask;
 	System.Object directorTaskLock;
 
 	public Place arrowPosition;
-//	byte[] receiveImage1, receiveImage2;
 	public EmailSender emailSender;
 
 	// Use this for initialization
@@ -29,8 +27,8 @@ public class Director : MonoBehaviour,
 		stateController = new StateController ("192.168.137.1", 50000);
 		stateController.SetListener (this);
 
-		wormholeReceiver = new WormholeImageReceiver ();
-		wormholeReceiver.SetListener (this);
+//		wormholeReceiver = new WormholeImageReceiver ();
+//		wormholeReceiver.SetListener (this);
 
 		directorTask = null;
 		directorTaskLock = new System.Object ();
@@ -236,7 +234,7 @@ public class Director : MonoBehaviour,
 		}
 	}
 
-	public void OnNewImageAvailable(byte[] image1, byte[] image2)
+	public void LoadImage(byte[] image1, byte[] image2)
 	{
 //		receiveImage1 = image1;
 //		receiveImage2 = image2;

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 
-public class WormholePage : Page {
+public class WormholePage : Page, WormholeImageListener {
 
 	Director director;
 
@@ -12,10 +12,15 @@ public class WormholePage : Page {
 	double startTime;
 	Text remainingTimeText;
 
+	WormholeImageReceiver wormholeReceiver;
+
 	public WormholePage (Director director)
 	{
 		this.director = director;
 		SetupComponents ();
+
+		wormholeReceiver = new WormholeImageReceiver ();
+		wormholeReceiver.SetListener (this);
 	}
 
 	public override void Update ()
@@ -36,5 +41,11 @@ public class WormholePage : Page {
 		startTime = Timer.GetInstance ().GetCurrentTime ();
 		remainingTimeText = page.transform.FindChild ("RemainingTimeText").gameObject.GetComponent<Text> ();
 		remainingTimeText.text = "0";
+	}
+
+	public void OnNewImageAvailable(byte[] image1, byte[] image2)
+	{
+		director.LoadImage (image1, image2);
+		director.AssignTask (new WormholeEndDirectorTask ());
 	}
 }
