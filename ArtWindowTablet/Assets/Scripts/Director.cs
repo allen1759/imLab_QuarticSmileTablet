@@ -145,6 +145,7 @@ public class Director : MonoBehaviour,
 			pageStack.Peek ().End ();
 			Destroy (pageStack.Peek ().GetPage ());
 			pageStack.Pop ();
+			pageStack.Peek ().OnResume ();
 		}
 	}
 

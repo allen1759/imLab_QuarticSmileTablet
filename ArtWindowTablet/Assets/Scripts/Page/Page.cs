@@ -12,6 +12,10 @@ public abstract class Page {
 
 	public abstract void Update ();
 
+	public virtual void OnResume ()
+	{
+	}
+
 	/**
 	 * Some action should be executed immediately after Page is no need,
 	 * cannot wait for automatic garbage collcection.

@@ -11,6 +11,7 @@ public class MediaPool {
 	GameObject mainPage;
 	Sprite mainPageImage;
 	Sprite doorButtonImage, libraryButtonImage, cossButtonImage, lakeButtonImage;
+	Sprite doorButtonClickImage, libraryButtonClickImage, cossButtonClickImage, lakeButtonClickImage;
 	Sprite originButtonImage, conceptButtonImage, artcenterButtonImage, deptButtonImage;
 
 	// Assets in navigation page
@@ -33,6 +34,11 @@ public class MediaPool {
 		libraryButtonImage = Resources.Load<Sprite> ("Media/buttons/library_button");
 		cossButtonImage = Resources.Load<Sprite> ("Media/buttons/coss_button");
 		lakeButtonImage = Resources.Load<Sprite> ("Media/buttons/lake_button");
+
+		doorButtonClickImage = Resources.Load<Sprite> ("Media/buttons/door_button_click");
+		libraryButtonClickImage = Resources.Load<Sprite> ("Media/buttons/library_button_click");
+		cossButtonClickImage = Resources.Load<Sprite> ("Media/buttons/coss_button_click");
+		lakeButtonClickImage = Resources.Load<Sprite> ("Media/buttons/lake_button_click");
 
 		originButtonImage = Resources.Load<Sprite> ("Media/buttons/origin_button");
 		conceptButtonImage = Resources.Load<Sprite> ("Media/buttons/concept_button");
@@ -70,24 +76,36 @@ public class MediaPool {
 		return mainPageImage;
 	}
 
-	public Sprite GetDoorButtonImage ()
+	public Sprite GetDoorButtonImage (bool isClick)
 	{
-		return doorButtonImage;
+		if (isClick)
+			return doorButtonClickImage;
+		else
+			return doorButtonImage;
 	}
 
-	public Sprite GetLibraryButtonImage ()
+	public Sprite GetLibraryButtonImage (bool isClick)
 	{
-		return libraryButtonImage;
+		if (isClick)
+			return libraryButtonClickImage;
+		else
+			return libraryButtonImage;
 	}
 
-	public Sprite GetCossButtonImage ()
+	public Sprite GetCossButtonImage (bool isClick)
 	{
-		return cossButtonImage;
+		if (isClick)
+			return cossButtonClickImage;
+		else
+			return cossButtonImage;
 	}
 
-	public Sprite GetLakeButtonImage ()
+	public Sprite GetLakeButtonImage (bool isClick)
 	{
-		return lakeButtonImage;
+		if (isClick)
+			return lakeButtonClickImage;
+		else
+			return lakeButtonImage;
 	}
 
 	public Sprite GetOriginButtonImage ()

@@ -7,6 +7,8 @@ public class MainPage : Page {
 
 	Director director;
 
+	Button doorButton, libraryButton, cossButton, lakeButton;
+
 	DoorButtonClickListener doorButtonClickListener;
 	LibraryButtonClickListener libraryButtonClickListener;
 	CossButtonClickListener cossButtonClickListener;
@@ -44,10 +46,10 @@ public class MainPage : Page {
 		
 	private void SetupButtonListener ()
 	{
-		Button doorButton = page.transform.FindChild ("Navigation/DoorButton").gameObject.GetComponent<Button> ();
-		Button libraryButton = page.transform.FindChild ("Navigation/LibraryButton").gameObject.GetComponent<Button> ();
-		Button cossButton = page.transform.FindChild ("Navigation/CossButton").gameObject.GetComponent<Button> ();
-		Button lakeButton = page.transform.FindChild ("Navigation/LakeButton").gameObject.GetComponent<Button> ();
+		doorButton = page.transform.FindChild ("Navigation/DoorButton").gameObject.GetComponent<Button> ();
+		libraryButton = page.transform.FindChild ("Navigation/LibraryButton").gameObject.GetComponent<Button> ();
+		cossButton = page.transform.FindChild ("Navigation/CossButton").gameObject.GetComponent<Button> ();
+		lakeButton = page.transform.FindChild ("Navigation/LakeButton").gameObject.GetComponent<Button> ();
 
 		Button originButton = page.transform.FindChild ("Sidebar/OriginButton").gameObject.GetComponent<Button> ();
 		Button conceptButton = page.transform.FindChild ("Sidebar/ConceptButton").gameObject.GetComponent<Button> ();
@@ -55,16 +57,16 @@ public class MainPage : Page {
 		Button deptButton = page.transform.FindChild ("Sidebar/DeptButton").gameObject.GetComponent<Button> ();
 
 		// buttons on the map
-		doorButtonClickListener = new DoorButtonClickListener (director, doorButton);
+		doorButtonClickListener = new DoorButtonClickListener (director, this);
 		doorButton.onClick.AddListener (doorButtonClickListener.OnClick);
 
-		libraryButtonClickListener = new LibraryButtonClickListener (director, libraryButton);
+		libraryButtonClickListener = new LibraryButtonClickListener (director, this);
 		libraryButton.onClick.AddListener (libraryButtonClickListener.OnClick);
 
-		cossButtonClickListener = new CossButtonClickListener (director, cossButton);
+		cossButtonClickListener = new CossButtonClickListener (director, this);
 		cossButton.onClick.AddListener (cossButtonClickListener.OnClick);
 
-		lakeButtonClickListener = new LakeButtonClickListener (director, lakeButton);
+		lakeButtonClickListener = new LakeButtonClickListener (director, this);
 		lakeButton.onClick.AddListener (lakeButtonClickListener.OnClick);
 
 		// buttons on the side bar
@@ -101,7 +103,12 @@ public class MainPage : Page {
 		arrowRotations.Add (Place.COSS, Quaternion.Euler (0, 0, 330));
 		arrowRotations.Add (Place.LAKE, Quaternion.Euler (0, 0, 0));
 	}
-		
+
+	public override void OnResume ()
+	{
+		SetAllNavigationButtonNotClick ();
+	}
+
 	public override void Update ()
 	{
 		// test code
@@ -122,6 +129,37 @@ public class MainPage : Page {
 			arrow.sprite = arrowAnimation[arrowAnimationIndex];
 			arrowAnimationIndex = (arrowAnimationIndex + 1) % arrowAnimation.Count;
 			arrowAnimationTime = currentTime;
+		}
+	}
+
+	private void SetAllNavigationButtonNotClick ()
+	{
+		doorButton.image.sprite = MediaPool.GetInstance ().GetDoorButtonImage (false);
+		libraryButton.image.sprite = MediaPool.GetInstance ().GetLibraryButtonImage (false);
+		cossButton.image.sprite = MediaPool.GetInstance ().GetCossButtonImage (false);
+		lakeButton.image.sprite = MediaPool.GetInstance ().GetLakeButtonImage (false);
+	}
+
+	public void SetNavigationButtonClick (Place navigationButton)
+	{
+		SetAllNavigationButtonNotClick ();
+
+		switch (navigationButton) {
+		case Place.DOOR:
+			doorButton.image.sprite = MediaPool.GetInstance ().GetDoorButtonImage (true);
+			break;
+
+		case Place.LIBRARY:
+			libraryButton.image.sprite = MediaPool.GetInstance ().GetLibraryButtonImage (true);
+			break;
+
+		case Place.COSS:
+			cossButton.image.sprite = MediaPool.GetInstance ().GetCossButtonImage (true);
+			break;
+
+		case Place.LAKE:
+			lakeButton.image.sprite = MediaPool.GetInstance ().GetLakeButtonImage (true);
+			break;
 		}
 	}
 }

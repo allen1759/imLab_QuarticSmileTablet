@@ -5,17 +5,17 @@ using System.Collections;
 public class DoorButtonClickListener : ButtonClickListener {
 
 	Director director;
-	Button button;
+	MainPage mainPage;
 
-	public DoorButtonClickListener (Director director, Button button)
+	public DoorButtonClickListener (Director director, MainPage mainPage)
 	{
 		this.director = director;
-		this.button = button;
+		this.mainPage = mainPage;
 	}
 
 	public void OnClick ()
 	{
 		director.SendStateCommand ("DOOR");
-		// change button image
+		mainPage.SetNavigationButtonClick (Place.DOOR);
 	}
 }

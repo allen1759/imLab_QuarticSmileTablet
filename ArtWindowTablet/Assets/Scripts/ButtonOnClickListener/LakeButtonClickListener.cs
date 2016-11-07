@@ -5,17 +5,17 @@ using System.Collections;
 public class LakeButtonClickListener : ButtonClickListener {
 
 	Director director;
-	Button button;
+	MainPage mainPage;
 
-	public LakeButtonClickListener (Director director, Button button)
+	public LakeButtonClickListener (Director director, MainPage mainPage)
 	{
 		this.director = director;
-		this.button = button;
+		this.mainPage = mainPage;
 	}
 
 	public void OnClick ()
 	{
 		director.SendStateCommand ("Lake");
-		// change button image
+		mainPage.SetNavigationButtonClick (Place.LAKE);
 	}
 }
