@@ -19,7 +19,6 @@ public class PrefabPool {
 		mainPage = (GameObject)Resources.Load ("Prefabs/MainPage");
 
 		navigationPage = (GameObject)Resources.Load ("Prefabs/NavigationPage");
-//		locationPage = (GameObject)Resources.Load ("Prefabs/LocationPage");
 		videoPage = (GameObject)Resources.Load ("Prefabs/VideoPage");
 		webPage = (GameObject)Resources.Load ("Prefabs/WebPage");
 
