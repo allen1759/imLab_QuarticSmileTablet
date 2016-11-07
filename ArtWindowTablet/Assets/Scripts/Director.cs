@@ -142,6 +142,7 @@ public class Director : MonoBehaviour,
 			Debug.Log ("It exists only one page in stack");
 		}
 		else {
+			pageStack.Peek ().End ();
 			Destroy (pageStack.Peek ().GetPage ());
 			pageStack.Pop ();
 		}
