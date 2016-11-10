@@ -13,6 +13,8 @@ public class EmailSendButtonClickListener {
 
 	public void OnClick (string email)
 	{
+		director.emailSender.SetMyEmail (email);
 		director.SendStateCommand ("EMAIL_YES_" + email);
+		director.AssignTask (new EndPageStartDirectorTask ());
 	}
 }

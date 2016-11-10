@@ -11,6 +11,7 @@ public class EmailInputPage : Page {
 	Text remainingTimeText;
 
 	EmailSendButtonClickListener emailSendButtonClickListener;
+	EmailNoButtonClickListener emailCancelButtonClickListener;
 	KeyboardListener keyboardListener;
 
 	private string[] buttonName = new string[] { "1234567890<", "qwertyuiop", "asdfghjkl-", "@zxcvbnm._" };
@@ -27,11 +28,15 @@ public class EmailInputPage : Page {
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
 	}
 
+	public void ResetTimer ()
+	{
+		startTime = Timer.GetInstance ().GetCurrentTime ();
+	}
+
 	private void SetupComponents ()
 	{
 		GameObject pageAsset = PrefabPool.GetInstance ().GetEmailInputPage ();
 		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
-
 
 		// Link to remainingTimeText
 		startTime = Timer.GetInstance ().GetCurrentTime ();
@@ -43,10 +48,10 @@ public class EmailInputPage : Page {
 	{
 		InputField inputField = page.transform.FindChild ("InputField").gameObject.GetComponent<InputField> ();
 
-		keyboardListener = new KeyboardListener (inputField);
+		keyboardListener = new KeyboardListener (this, inputField);
 
 		float[] startPosX = { -620, -565, -565, -565 }; 
-		float startPosY = 150;
+		float startPosY = -50;
 		float deltaX = 110, deltaY = -110;
 		for(int i = 0; i < buttonName.Length; i += 1) {
 			for (int j = 0; j < buttonName [i].Length; j += 1) {
@@ -65,6 +70,10 @@ public class EmailInputPage : Page {
 		sendButton.onClick.AddListener (delegate() {
 			emailSendButtonClickListener.OnClick(inputField.text);
 		});
+
+		Button cancelButton = page.transform.FindChild ("CancelButton").gameObject.GetComponent<Button> ();
+		emailCancelButtonClickListener = new EmailNoButtonClickListener (director);
+		cancelButton.onClick.AddListener (emailCancelButtonClickListener.OnClick);
 	}
 
 	private string key2name (String key) 

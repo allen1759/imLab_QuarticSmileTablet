@@ -5,6 +5,8 @@ using System.Collections;
 
 public class EmailConfirmPage : Page {
 
+	Director director;
+
 	const double LIFE_TIME = 30.0;
 
 	double startTime;
@@ -15,6 +17,7 @@ public class EmailConfirmPage : Page {
 
 	public EmailConfirmPage (Director director)
 	{
+		this.director = director;
 		SetupComponents ();
 		SetupButtonListener (director);
 	}
@@ -22,13 +25,23 @@ public class EmailConfirmPage : Page {
 	public override void Update ()
 	{
 		double elapsedTime = Timer.GetInstance ().GetCurrentTime () - startTime;
-		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
+		remainingTimeText.text = Math.Max (Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)), 0).ToString ();
+
+		// same action when no button click
+		if (LIFE_TIME - elapsedTime <= 0) {
+			director.SendStateCommand ("EMAIL_NO");
+			director.AssignTask (new EndPageStartDirectorTask ());
+		}
 	}
 
 	private void SetupComponents ()
 	{
 		GameObject pageAsset = PrefabPool.GetInstance ().GetConfirmPage ();
-		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
+		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);
+
+		// Setup background
+		Image confirmPage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();
+		confirmPage.sprite = MediaPool.GetInstance ().GetEmailConfirmPageImage ();
 
 		// Link to remainingTimeText
 		startTime = Timer.GetInstance ().GetCurrentTime ();

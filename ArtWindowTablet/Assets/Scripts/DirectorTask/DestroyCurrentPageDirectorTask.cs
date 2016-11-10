@@ -8,5 +8,3 @@ public class DestroyCurrentPageDirectorTask : DirectorTask {
 		director.DestroyCurrentPage ();
 	}
 }
-
-

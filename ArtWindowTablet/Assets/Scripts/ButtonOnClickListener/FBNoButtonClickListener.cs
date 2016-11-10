@@ -14,5 +14,6 @@ public class FBNoButtonClickListener : ButtonClickListener {
 	public void OnClick ()
 	{
 		director.SendStateCommand ("FB_NO");
+		director.AssignTask (new EndPageStartDirectorTask ());
 	}
 }

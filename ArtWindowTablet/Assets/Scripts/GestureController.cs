@@ -55,6 +55,8 @@ public class GestureController {
 
 	public void StopThread() {
 		startThread = false;
+		clientSocket.GetStream ().Close ();
+		clientSocket.Close ();
 	}
 
 

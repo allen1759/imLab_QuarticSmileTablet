@@ -11,6 +11,7 @@ public class MediaPool {
 	GameObject mainPage;
 	Sprite mainPageImage;
 	Sprite doorButtonImage, libraryButtonImage, cossButtonImage, lakeButtonImage;
+	Sprite doorButtonClickImage, libraryButtonClickImage, cossButtonClickImage, lakeButtonClickImage;
 	Sprite originButtonImage, conceptButtonImage, artcenterButtonImage, deptButtonImage;
 
 	// Assets in navigation page
@@ -18,11 +19,14 @@ public class MediaPool {
 
 	Sprite originPageImage, conceptPageImage, webPageImage;
 
+	Sprite fbConfirmPageImage, emailConfirmPageImage;
+
+	Sprite endPageImage;
+
 	List<Sprite> arrowAnimation;
 
 	private MediaPool ()
 	{
-		//mainPage = (GameObject)Resources.Load ("Media/MainPage");
 		// Assets in main page
 		mainPageImage = Resources.Load<Sprite> ("Media/page_image/main_page_image");
 
@@ -30,6 +34,11 @@ public class MediaPool {
 		libraryButtonImage = Resources.Load<Sprite> ("Media/buttons/library_button");
 		cossButtonImage = Resources.Load<Sprite> ("Media/buttons/coss_button");
 		lakeButtonImage = Resources.Load<Sprite> ("Media/buttons/lake_button");
+
+		doorButtonClickImage = Resources.Load<Sprite> ("Media/buttons/door_button_click");
+		libraryButtonClickImage = Resources.Load<Sprite> ("Media/buttons/library_button_click");
+		cossButtonClickImage = Resources.Load<Sprite> ("Media/buttons/coss_button_click");
+		lakeButtonClickImage = Resources.Load<Sprite> ("Media/buttons/lake_button_click");
 
 		originButtonImage = Resources.Load<Sprite> ("Media/buttons/origin_button");
 		conceptButtonImage = Resources.Load<Sprite> ("Media/buttons/concept_button");
@@ -45,6 +54,11 @@ public class MediaPool {
 		conceptPageImage = Resources.Load<Sprite> ("Media/page_image/concept_page_image");
 		webPageImage = Resources.Load<Sprite> ("Media/page_image/web_page_image");
 
+		fbConfirmPageImage = Resources.Load<Sprite> ("Media/page_image/fb_confirm_page_image");
+		emailConfirmPageImage = Resources.Load<Sprite> ("Media/page_image/email_confirm_page_image");
+
+		endPageImage = Resources.Load<Sprite> ("Media/page_image/end_page_image");
+
 		arrowAnimation = new List<Sprite> ();
 		for (int i = 0; i < 9; ++i)
 			arrowAnimation.Add (Resources.Load<Sprite> ("Media/arrow/" + i.ToString ()));
@@ -57,34 +71,41 @@ public class MediaPool {
 		return instance;
 	}
 
-//	public GameObject GetMainpage ()
-//	{
-//		return mainPage;
-//	}
-
 	public Sprite GetMainPageImage ()
 	{
 		return mainPageImage;
 	}
 
-	public Sprite GetDoorButtonImage ()
+	public Sprite GetDoorButtonImage (bool isClick)
 	{
-		return doorButtonImage;
+		if (isClick)
+			return doorButtonClickImage;
+		else
+			return doorButtonImage;
 	}
 
-	public Sprite GetLibraryButtonImage ()
+	public Sprite GetLibraryButtonImage (bool isClick)
 	{
-		return libraryButtonImage;
+		if (isClick)
+			return libraryButtonClickImage;
+		else
+			return libraryButtonImage;
 	}
 
-	public Sprite GetCossButtonImage ()
+	public Sprite GetCossButtonImage (bool isClick)
 	{
-		return cossButtonImage;
+		if (isClick)
+			return cossButtonClickImage;
+		else
+			return cossButtonImage;
 	}
 
-	public Sprite GetLakeButtonImage ()
+	public Sprite GetLakeButtonImage (bool isClick)
 	{
-		return lakeButtonImage;
+		if (isClick)
+			return lakeButtonClickImage;
+		else
+			return lakeButtonImage;
 	}
 
 	public Sprite GetOriginButtonImage ()
@@ -140,6 +161,21 @@ public class MediaPool {
 	public Sprite GetWebPageImage ()
 	{
 		return webPageImage;
+	}
+
+	public Sprite GetFBConfirmPageImage ()
+	{
+		return fbConfirmPageImage;
+	}
+
+	public Sprite GetEmailConfirmPageImage ()
+	{
+		return emailConfirmPageImage;
+	}
+
+	public Sprite GetEndPageImage ()
+	{
+		return endPageImage;
 	}
 
 	public List<Sprite> GetArrowAnimation ()

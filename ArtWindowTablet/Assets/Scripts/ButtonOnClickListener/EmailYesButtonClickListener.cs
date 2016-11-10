@@ -13,6 +13,6 @@ public class EmailYesButtonClickListener : ButtonClickListener {
 
 	public void OnClick ()
 	{
-		// chage to email input page
+		director.AssignTask (new EmailInputStartDirectorTask ());
 	}
 }
