@@ -15,7 +15,7 @@ public class LakeButtonClickListener : ButtonClickListener {
 
 	public void OnClick ()
 	{
-		director.SendStateCommand ("Lake");
+		director.SendStateCommand ("LAKE");
 		mainPage.SetNavigationButtonClick (Place.LAKE);
 	}
 }
