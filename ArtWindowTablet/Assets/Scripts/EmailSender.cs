@@ -40,6 +40,8 @@ public class EmailSender
 	{
 		myEmail = "";
 		otherEmail = "";
+
+		isSending = true;
 	}
 
 	public void loadImage (byte[] image1, byte[] image2)

@@ -114,7 +114,7 @@ public class GestureController {
 		if (Input.touchCount > 0)
 			currPos = Input.GetTouch (0).position;
 
-		if (Input.touchCount == 1 && currPos.x >= 260 && currPos.x <= 1650 && currPos.y >= 60 &&currPos.y <= 1000) {
+		if (Input.touchCount == 1 && currPos.x >= 420 && currPos.x <= 1250 && currPos.y >= 130 &&currPos.y <= 820) {
 
 			Vector2 deltaPosition = new Vector2 ();
 			deltaPosition = currPos - prePos;
