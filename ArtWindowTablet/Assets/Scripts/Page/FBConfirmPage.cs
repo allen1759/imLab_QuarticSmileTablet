@@ -7,7 +7,7 @@ public class FBConfirmPage : Page {
 
 	Director director;
 
-	const double LIFE_TIME = 30.0;
+	const double LIFE_TIME = 60.0;
 
 	double startTime;
 	Text remainingTimeText;
