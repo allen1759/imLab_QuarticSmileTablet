@@ -22,8 +22,13 @@ public class WormholePage : Page, WormholeImageListener {
 		double elapsedTime = Timer.GetInstance ().GetCurrentTime () - startTime;
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
 
-		if (LIFE_TIME - elapsedTime <= 0)
-			director.AssignTask (new WormholeEndDirectorTask());
+		if (LIFE_TIME - elapsedTime <= 0) {
+			director.AssignTask (new DestroyCurrentPageDirectorTask ());
+			director.SendMessage ("FB_NO");
+			director.SendMessage ("EMAIL_NO");
+			director.SendMessage ("RESTART");
+//			director.AssignTask (new WormholeEndDirectorTask());
+		}
 	}
 
 	private void SetupComponents ()
