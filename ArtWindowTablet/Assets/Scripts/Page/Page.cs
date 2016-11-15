@@ -1,9 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public abstract class Page {
 
 	protected GameObject page;
+
+	protected Director director;
+	protected double startTime;
+	private double pauseTime;
+	protected Text remainingTimeText;
+
+	protected Page (Director director)
+	{
+		this.director = director;
+	}
 
 	public GameObject GetPage()
 	{
@@ -12,8 +23,14 @@ public abstract class Page {
 
 	public abstract void Update ();
 
+	public virtual void OnPause ()
+	{
+		pauseTime = Timer.GetInstance ().GetCurrentTime ();
+	}
+
 	public virtual void OnResume ()
 	{
+		startTime += Timer.GetInstance ().GetCurrentTime () - pauseTime;
 	}
 
 	/**

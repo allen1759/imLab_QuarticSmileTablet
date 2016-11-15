@@ -5,18 +5,12 @@ using System.Collections;
 
 public class WormholePage : Page, WormholeImageListener {
 
-	Director director;
-
 	const double LIFE_TIME = 90.0;
-
-	double startTime;
-	Text remainingTimeText;
 
 	WormholeImageReceiver wormholeReceiver;
 
-	public WormholePage (Director director)
+	public WormholePage (Director director) : base (director)
 	{
-		this.director = director;
 		SetupComponents ();
 
 		wormholeReceiver = new WormholeImageReceiver ();

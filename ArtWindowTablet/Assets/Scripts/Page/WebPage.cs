@@ -7,17 +7,14 @@ public class WebPage : Page {
 
 	const double LIFE_TIME = 30.0;
 
-	double startTime;
-	Text remainingTimeText;
-
 	BackButtonClickListener backButtonClickListener;
 
 	GestureController gestureController;
 
-	public WebPage (Director director)
+	public WebPage (Director director) : base (director)
 	{
 		SetupComponents ();
-		SetupButtonListener (director);
+		SetupButtonListener ();
 
 		gestureController = new GestureController ("192.168.137.1", 50001);
 	}
@@ -51,7 +48,7 @@ public class WebPage : Page {
 		remainingTimeText.text = "0";
 	}
 
-	private void SetupButtonListener (Director director)
+	private void SetupButtonListener ()
 	{
 		Button backButton = page.transform.FindChild ("BackButton").gameObject.GetComponent<Button> ();
 		backButtonClickListener = new BackButtonClickListener (director);

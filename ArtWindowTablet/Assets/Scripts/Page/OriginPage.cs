@@ -7,15 +7,12 @@ public class OriginPage : Page {
 
 	const double LIFE_TIME = 30.0;
 
-	double startTime;
-	Text remainingTimeText;
-
 	BackButtonClickListener backButtonClickListener;
 
-	public OriginPage (Director director)
+	public OriginPage (Director director) : base (director)
 	{
 		SetupComponents ();
-		SetupButtonListener (director);
+		SetupButtonListener ();
 	}
 
 	public override void Update ()
@@ -39,7 +36,7 @@ public class OriginPage : Page {
 		remainingTimeText.text = "0";
 	}
 
-	private void SetupButtonListener (Director director)
+	private void SetupButtonListener ()
 	{
 		Button backButton = page.transform.FindChild ("BackButton").gameObject.GetComponent<Button> ();
 		backButtonClickListener = new BackButtonClickListener (director);

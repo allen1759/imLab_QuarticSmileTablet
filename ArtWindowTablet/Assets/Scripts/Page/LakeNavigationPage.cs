@@ -4,22 +4,17 @@ using System;
 using System.Collections;
 
 public class LakeNavigationPage : Page {
-
-	private Director director;
-
+	
 	const double LIFE_TIME = 30.0;
 
-	private double startTime;
-	private Text remainingTimeText;
 	private bool endSession;
 
 	private BackButtonClickListener backButtonClickListener;
 
-	public LakeNavigationPage (Director director)
+	public LakeNavigationPage (Director director) : base (director)
 	{
-		this.director = director;
 		SetupComponents ();
-		SetupButtonListener (director);
+		SetupButtonListener ();
 	}
 
 	public override void Update ()
@@ -50,7 +45,7 @@ public class LakeNavigationPage : Page {
 		endSession = false;
 	}
 
-	private void SetupButtonListener (Director director)
+	private void SetupButtonListener ()
 	{
 		Button backButton = page.transform.FindChild ("BackButton").gameObject.GetComponent<Button> ();
 		backButtonClickListener = new BackButtonClickListener (director);

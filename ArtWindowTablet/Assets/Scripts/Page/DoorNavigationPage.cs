@@ -5,21 +5,16 @@ using System.Collections;
 
 public class DoorNavigationPage : Page {
 
-	private Director director;
-
 	const double LIFE_TIME = 30.0;
 
-	private double startTime;
-	private Text remainingTimeText;
 	private bool endSession;
 
 	private BackButtonClickListener backButtonClickListener;
 
-	public DoorNavigationPage (Director director)
+	public DoorNavigationPage (Director director) : base (director)
 	{
-		this.director = director;
 		SetupComponents ();
-		SetupButtonListener (director);
+		SetupButtonListener ();
 	}
 
 	public override void Update ()
@@ -50,7 +45,7 @@ public class DoorNavigationPage : Page {
 		endSession = false;
 	}
 
-	private void SetupButtonListener (Director director)
+	private void SetupButtonListener ()
 	{
 		Button backButton = page.transform.FindChild ("BackButton").gameObject.GetComponent<Button> ();
 		backButtonClickListener = new BackButtonClickListener (director);

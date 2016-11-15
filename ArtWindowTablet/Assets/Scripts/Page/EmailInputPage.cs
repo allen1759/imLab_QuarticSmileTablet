@@ -5,12 +5,7 @@ using System.Collections;
 
 public class EmailInputPage : Page {
 
-	Director director;
-
 	const double LIFE_TIME = 99.0;
-
-	double startTime;
-	Text remainingTimeText;
 
 	EmailSendButtonClickListener emailSendButtonClickListener;
 	EmailNoButtonClickListener emailCancelButtonClickListener;
@@ -18,11 +13,10 @@ public class EmailInputPage : Page {
 
 	private string[] buttonName = new string[] { "1234567890<", "qwertyuiop", "asdfghjkl-", "@zxcvbnm._" };
 
-	public EmailInputPage (Director director)
+	public EmailInputPage (Director director) : base (director)
 	{
-		this.director = director;
 		SetupComponents ();
-		SetupButtonListener (director);
+		SetupButtonListener ();
 	}
 
 	public override void Update ()
@@ -53,7 +47,7 @@ public class EmailInputPage : Page {
 		remainingTimeText.text = "0";
 	}
 
-	private void SetupButtonListener (Director director)
+	private void SetupButtonListener ()
 	{
 		InputField inputField = page.transform.FindChild ("InputField").gameObject.GetComponent<InputField> ();
 

@@ -10,8 +10,6 @@ public class Director : MonoBehaviour,
 
 	StateController stateController;
 
-//	WormholeImageReceiver wormholeReceiver;
-
 	DirectorTask directorTask;
 	System.Object directorTaskLock;
 
@@ -27,9 +25,6 @@ public class Director : MonoBehaviour,
 		stateController = new StateController ("192.168.137.1", 50000);
 		stateController.SetListener (this);
 
-//		wormholeReceiver = new WormholeImageReceiver ();
-//		wormholeReceiver.SetListener (this);
-
 		directorTask = null;
 		directorTaskLock = new System.Object ();
 
@@ -37,11 +32,6 @@ public class Director : MonoBehaviour,
 
 		pageStack = new Stack<Page> ();
 		pageStack.Push (new MainPage (this));
-//		pageStack.Push (new DoorNavigationPage (this));
-//		pageStack.Push (new WebPage (this));
-//		pageStack.Push (new WormholePage(this));
-//		pageStack.Push (new EmailInputPage (this));
-//		pageStack.Push (new EndPage (this));
 	}
 	
 	// Update is called once per frame
@@ -68,69 +58,80 @@ public class Director : MonoBehaviour,
 		}
 	}
 
+	private void CreatePage (Page newPage)
+	{
+		if (pageStack.Count == 0) {
+			Debug.Log ("The case never happened!!!");
+		}
+		else {
+			pageStack.Peek ().OnPause ();
+		}
+		pageStack.Push (newPage);
+	}
+
 	public void CreateDoorNavigationPage ()
 	{
-		pageStack.Push (new DoorNavigationPage (this));
+		CreatePage (new DoorNavigationPage (this));
 	}
 	
 	public void CreateLibraryNavigationPage ()
 	{
-		pageStack.Push (new LibraryNavigationPage (this));
+		CreatePage (new LibraryNavigationPage (this));
 	}
 
 	public void CreateCossNavigationPage ()
 	{
-		pageStack.Push (new CossNavigationPage (this));
+		CreatePage (new CossNavigationPage (this));
 	}
 
 	public void CreateLakeNavigationPage ()
 	{
-		pageStack.Push (new LakeNavigationPage (this));
+		CreatePage (new LakeNavigationPage (this));
 	}
 
 	public void CreateOriginPage ()
 	{
-		pageStack.Push (new OriginPage (this));
+		CreatePage (new OriginPage (this));
 	}
 
 	public void CreateConceptPage ()
 	{
-		pageStack.Push (new ConceptPage (this));
+		CreatePage (new ConceptPage (this));
 	}
 
 	public void CreateDeptPage ()
 	{
-		pageStack.Push (new WebPage (this));
+		CreatePage (new WebPage (this));
 	}
 
 	public void CreateArtcenterPage ()
 	{
-		pageStack.Push (new WebPage (this));
+		CreatePage (new WebPage (this));
 	}
 
 	public void CreateWormholePage ()
 	{
-		pageStack.Push (new WormholePage (this));
+		CreatePage (new WormholePage (this));
 	}
 
 	public void CreateFBConfirmPage ()
 	{
-		pageStack.Push (new FBConfirmPage (this));
+		CreatePage (new FBConfirmPage (this));
 	}
 
 	public void CreateEmailConfirmPage ()
 	{
-		pageStack.Push (new EmailConfirmPage (this));
+		CreatePage (new EmailConfirmPage (this));
 	}
 
 	public void CreateEmailInputPage ()
 	{
-		pageStack.Push (new EmailInputPage (this));
+		CreatePage (new EmailInputPage (this));
 	}
 
 	public void CreateEndPage ()
 	{
-		pageStack.Push (new EndPage (this));
+		CreatePage (new EndPage (this));
 	}
 
 	public void DestroyCurrentPage ()
@@ -238,8 +239,6 @@ public class Director : MonoBehaviour,
 
 	public void LoadImage(byte[] image1, byte[] image2)
 	{
-//		receiveImage1 = image1;
-//		receiveImage2 = image2;
 		emailSender.loadImage (image1, image2);
 		AssignTask (new WormholeEndDirectorTask ());
 	}
@@ -248,7 +247,7 @@ public class Director : MonoBehaviour,
 	{
 		pageStack.Clear ();
 		stateController.StopThread ();
-		Debug.Log ("destroy director");
+		Debug.Log ("Destroy director");
 	}
 
 	private void DebuggingCode ()

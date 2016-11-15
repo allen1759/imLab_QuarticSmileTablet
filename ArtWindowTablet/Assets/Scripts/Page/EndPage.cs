@@ -5,20 +5,14 @@ using System.Collections;
 
 public class EndPage : Page {
 
-	Director director;
-
 	const double LIFE_TIME = 60.0;
-
-	double startTime;
-	Text remainingTimeText;
 
 	RestartButtonClickListener restartButtonClickListener;
 
-	public EndPage (Director director)
+	public EndPage (Director director) : base (director)
 	{
-		this.director = director;
 		SetupComponents ();
-		SetupButtonListener (director);
+		SetupButtonListener ();
 	}
 
 	public override void Update ()
@@ -44,7 +38,7 @@ public class EndPage : Page {
 		remainingTimeText.text = "0";
 	}
 
-	private void SetupButtonListener (Director director)
+	private void SetupButtonListener ()
 	{
 		Button backButton = page.transform.FindChild ("BackButton").gameObject.GetComponent<Button> ();
 		restartButtonClickListener = new RestartButtonClickListener (director);

@@ -5,21 +5,15 @@ using System.Collections;
 
 public class EmailConfirmPage : Page {
 
-	Director director;
-
 	const double LIFE_TIME = 60.0;
-
-	double startTime;
-	Text remainingTimeText;
 
 	EmailYesButtonClickListener emailYesButtonClickListener;
 	EmailNoButtonClickListener emailNoButtonClickListener;
 
-	public EmailConfirmPage (Director director)
+	public EmailConfirmPage (Director director) : base (director)
 	{
-		this.director = director;
 		SetupComponents ();
-		SetupButtonListener (director);
+		SetupButtonListener ();
 	}
 
 	public override void Update ()
@@ -49,7 +43,7 @@ public class EmailConfirmPage : Page {
 		remainingTimeText.text = "0";
 	}
 
-	private void SetupButtonListener (Director director)
+	private void SetupButtonListener ()
 	{
 		Button yesButton = page.transform.FindChild ("YesButton").gameObject.GetComponent<Button> ();
 		emailYesButtonClickListener = new EmailYesButtonClickListener (director);

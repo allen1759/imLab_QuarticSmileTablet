@@ -5,8 +5,6 @@ using System.Collections.Generic;
 
 public class MainPage : Page {
 
-	Director director;
-
 	Button doorButton, libraryButton, cossButton, lakeButton;
 
 	DoorButtonClickListener doorButtonClickListener;
@@ -27,10 +25,8 @@ public class MainPage : Page {
 	Dictionary<Place, Vector2> arrowPositions;
 	Dictionary<Place, Quaternion> arrowRotations;
 
-	public MainPage (Director director)
+	public MainPage (Director director) : base (director)
 	{
-		this.director = director;
-
 		SetupComponents ();
 
 		SetupButtonListener ();
@@ -103,24 +99,15 @@ public class MainPage : Page {
 		arrowRotations.Add (Place.COSS, Quaternion.Euler (0, 0, 330));
 		arrowRotations.Add (Place.LAKE, Quaternion.Euler (0, 0, 0));
 	}
-
+		
 	public override void OnResume ()
 	{
+		base.OnResume ();
 		SetAllNavigationButtonNotClick ();
 	}
 
 	public override void Update ()
 	{
-		// test code
-//		arrow.GetComponent<RectTransform> ().anchoredPosition = arrowPositions [Place.LIBRARY];
-//		arrow.GetComponent<RectTransform> ().rotation = arrowRotations [Place.LIBRARY]; 
-//		arrow.GetComponent<RectTransform> ().anchoredPosition = arrowPositions [Place.COSS];
-//		arrow.GetComponent<RectTransform> ().rotation = arrowRotations [Place.COSS]; 
-//		arrow.GetComponent<RectTransform> ().anchoredPosition = arrowPositions [Place.DOOR];
-//		arrow.GetComponent<RectTransform> ().rotation = arrowRotations [Place.DOOR]; 
-//		arrow.GetComponent<RectTransform> ().anchoredPosition = arrowPositions [Place.LAKE];
-//		arrow.GetComponent<RectTransform> ().rotation = arrowRotations [Place.LAKE]; 
-
 		arrow.GetComponent<RectTransform> ().anchoredPosition = arrowPositions [director.arrowPosition];
 		arrow.GetComponent<RectTransform> ().rotation = arrowRotations [director.arrowPosition]; 
 
