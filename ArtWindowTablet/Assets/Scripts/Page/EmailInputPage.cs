@@ -5,7 +5,9 @@ using System.Collections;
 
 public class EmailInputPage : Page {
 
-	const double LIFE_TIME = 60.0;
+	Director director;
+
+	const double LIFE_TIME = 99.0;
 
 	double startTime;
 	Text remainingTimeText;
@@ -18,6 +20,7 @@ public class EmailInputPage : Page {
 
 	public EmailInputPage (Director director)
 	{
+		this.director = director;
 		SetupComponents ();
 		SetupButtonListener (director);
 	}
@@ -26,6 +29,12 @@ public class EmailInputPage : Page {
 	{
 		double elapsedTime = Timer.GetInstance ().GetCurrentTime () - startTime;
 		remainingTimeText.text = Convert.ToInt32 (Math.Floor (LIFE_TIME - elapsedTime)).ToString ();
+
+		// same action when cancel button click
+		if (LIFE_TIME - elapsedTime <= 0) {
+			director.SendStateCommand ("EMAIL_NO");
+			director.AssignTask (new EndPageStartDirectorTask ());
+		}
 	}
 
 	public void ResetTimer ()

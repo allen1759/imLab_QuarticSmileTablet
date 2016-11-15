@@ -96,8 +96,10 @@ public class EmailSender
 
 	public void SendEmail()
 	{
-		if (myEmail == "" || otherEmail == "")
+		if (myEmail == "" || otherEmail == "") {
+			init ();
 			return;
+		}
 
 		if (!isValid (myEmail)) {
 			Debug.Log (myEmail + " is not valid email address");
