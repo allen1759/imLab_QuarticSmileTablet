@@ -24,7 +24,8 @@ public class ConceptPage : Page {
 	private void SetupComponents ()
 	{
 		GameObject pageAsset = PrefabPool.GetInstance ().GetVideoPage ();
-		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);	
+//		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);
+		page = UnityEngine.Object.Instantiate (pageAsset);
 
 		// Setup background
 		Image doorNavigationPage = page.transform.FindChild ("BackgroundImage").gameObject.GetComponent<Image> ();

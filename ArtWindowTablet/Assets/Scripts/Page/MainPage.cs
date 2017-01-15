@@ -37,7 +37,8 @@ public class MainPage : Page {
 	private void SetupComponents ()
 	{
 		GameObject pageAsset = PrefabPool.GetInstance ().GetMainPage ();
-		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);
+//		page = Instantiator.GetInstance ().InstantiatePrefab (pageAsset);
+		page = UnityEngine.Object.Instantiate (pageAsset);
 	}
 		
 	private void SetupButtonListener ()
